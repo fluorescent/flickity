@@ -761,6 +761,13 @@ proto.checkVisibility = function() {
   var viewportX = this.viewport.getBoundingClientRect().x;
   var viewportWidth = this.viewport.offsetWidth;
 
+  // Lorenza pulls content that should be out of the viewport in to
+  // force slides on either side of the viewport. We need to offset
+  // the viewport by the maximum amount it can be pulled in 4px.
+  if (this.options.wrapAround) {
+    viewportWidth = viewportWidth - 4;
+  }
+
   this.cells.forEach(function (cell) {
     var cellX = cell.element.getBoundingClientRect().x - viewportX;
     var isVisible = (
