@@ -771,6 +771,7 @@ proto.checkVisibility = function() {
   this.cells.forEach(function (cell) {
     var cellX = cell.element.getBoundingClientRect().x - viewportX;
     var isVisible = (
+        (cellX > -1 && cellX < 1) ||
         (cellX + cell.size.innerWidth > viewportX) && (cellX + cell.size.innerWidth < viewportWidth) ||
         (cellX > viewportX) && (cellX < viewportWidth)
     );
