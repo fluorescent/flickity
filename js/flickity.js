@@ -771,9 +771,16 @@ proto.checkVisibility = function() {
     if (isVisible) {
       cell.element.classList.add('is-visible');
       cell.element.removeAttribute('aria-hidden');
+      const targetable =  cell.element.querySelectorAll('button, a');
+
+      targetable.forEach(target => target.tabIndex = 0);
+
     } else {
       cell.element.classList.remove('is-visible');
       cell.element.setAttribute('aria-hidden', true);
+      const targetable =  cell.element.querySelectorAll('button, a');
+
+      targetable.forEach(target => target.tabIndex = -1);
     }
   });
 };
